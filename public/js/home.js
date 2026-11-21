@@ -80,8 +80,12 @@ const toast         = document.querySelector("#toast");
 const filterBtns    = document.querySelectorAll(".filter");
 const classCards    = document.querySelectorAll(".class-card");
 
-// 2. The balance (starts at 10 credits)
+// 2. The balance. localStorage only stores strings, so we convert with Number()
 let credits = START_CREDITS;
+const savedCredits = localStorage.getItem("credits");
+if (savedCredits !== null) {
+    credits = Number(savedCredits);
+}
 
 function showBalance() {
     balanceText.textContent = credits;
@@ -129,6 +133,7 @@ classCards.forEach((card) => {
     bookBtn.addEventListener("click", () => {
         if (credits >= cost) {
             credits -= cost;
+            localStorage.setItem("credits", credits);
             showBalance();
             showToast("Booked: " + name, false);
         } else {
@@ -140,6 +145,7 @@ classCards.forEach((card) => {
 // 5. Reset button (handy for the demo)
 resetCredits.addEventListener("click", () => {
     credits = START_CREDITS;
+    localStorage.setItem("credits", credits);
     showBalance();
     showToast("Credits reset to " + START_CREDITS + ".", false);
 });
