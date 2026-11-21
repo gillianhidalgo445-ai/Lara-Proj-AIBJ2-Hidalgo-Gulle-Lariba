@@ -69,3 +69,80 @@ slider.addEventListener("mouseleave", startAutoplay);
 showSlide(0);
 startAutoplay();
 
+
+/* =================== PART 2: CLASS BOOKING =================== */
+
+// 1. Select the elements
+const START_CREDITS = 10;
+const balanceText   = document.querySelector("#creditBalance");
+const resetCredits  = document.querySelector("#resetCredits");
+const toast         = document.querySelector("#toast");
+const filterBtns    = document.querySelectorAll(".filter");
+const classCards    = document.querySelectorAll(".class-card");
+
+// 2. The balance (starts at 10 credits)
+let credits = START_CREDITS;
+
+function showBalance() {
+    balanceText.textContent = credits;
+
+    // dim the Book button of any class we cannot afford (it still shows a message when clicked)
+    classCards.forEach((card) => {
+        const cost = Number(card.dataset.cost);          // data-cost="2" in the HTML
+        card.querySelector(".book-btn").classList.toggle("low", credits < cost);
+    });
+}
+
+function showToast(message, isError) {
+    toast.textContent = message;
+    toast.classList.add("show");
+    toast.classList.toggle("error", isError);
+}
+
+// 3. Filter pills: show only the classes that match the clicked pill
+filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const choice = btn.dataset.filter;               // "1", "2", "3" or "all"
+
+        filterBtns.forEach((b) => b.classList.toggle("active", b === btn));
+
+        classCards.forEach((card) => {
+            const match = choice === "all" || card.dataset.cost === choice;
+            card.classList.toggle("hidden", !match);
+        });
+    });
+});
+
+// 4. Each class card: Details toggles the extra text, Book spends the credits
+classCards.forEach((card) => {
+    const detailsBtn = card.querySelector(".details-btn");
+    const bookBtn    = card.querySelector(".book-btn");
+    const detailsTxt = card.querySelector(".details");
+    const cost       = Number(card.dataset.cost);
+    const name       = card.querySelector("h3").textContent;
+
+    detailsBtn.addEventListener("click", () => {
+        const open = detailsTxt.classList.toggle("open");
+        detailsBtn.textContent = open ? "Hide" : "Details";
+    });
+
+    bookBtn.addEventListener("click", () => {
+        if (credits >= cost) {
+            credits -= cost;
+            showBalance();
+            showToast("Booked: " + name, false);
+        } else {
+            showToast("Not enough credits. You need " + (cost - credits) + " more.", true);
+        }
+    });
+});
+
+// 5. Reset button (handy for the demo)
+resetCredits.addEventListener("click", () => {
+    credits = START_CREDITS;
+    showBalance();
+    showToast("Credits reset to " + START_CREDITS + ".", false);
+});
+
+// 6. Start
+showBalance();
