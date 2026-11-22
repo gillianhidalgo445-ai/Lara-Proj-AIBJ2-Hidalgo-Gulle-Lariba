@@ -1,7 +1,9 @@
 # IronCore Fitness: Laravel Multi-Page Web App
 
 Group name: Lara-Proj-AIBJ2-Hidalgo-Gulle-Lariba
+
 Section:AIBJ2
+
 Members:
 - Gillian Hidalgo (Module 1: Layout and Home)
 - Lorraine Jade Gulle (Module 2: About)
