@@ -30,7 +30,7 @@ A website for **IronCore Fitness**, a gym in Butuan City: strength floor, group 
 
 ## Steps to run the project
 1. Clone the repository: `git clone <repo-url>`
-2. Go into the folder: `cd Lara-Proj-AIBJ2-Hidalgo-Lariba-Gulle`
+2. Go into the folder: `cd Lara-Proj-AIBJ2-Hidalgo-Gulle-Lariba`
 3. Install dependencies: `composer install`
 4. Copy the environment file: `cp .env.example .env`
 5. Generate the app key: `php artisan key:generate`
