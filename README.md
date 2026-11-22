@@ -9,8 +9,6 @@ Members:
 - Lorraine Jade Gulle (Module 2: About)
 - Paul Jyrich Lariba (Module 3: Contact)
 
-Each member built their own module on their own branch and pushed it from their own GitHub account.
-
 ## Theme
 A website for **IronCore Fitness**, a gym in Butuan City: strength floor, group classes you book with credits, membership plans, the gym's story, and a contact form for membership questions. Design: black and acid-lime with stretched, bold Archivo headlines.
 
