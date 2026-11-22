@@ -42,7 +42,7 @@ function validate() {
         setError("email", "Please enter your email.");
         valid = false;
     } else if (!emailPattern.test(email)) {
-        setError("email", "Please enter a valid email address.");
+        setError("email", "Please enter a valid email like name@example.com.");
         valid = false;
     } else {
         setError("email", "");
